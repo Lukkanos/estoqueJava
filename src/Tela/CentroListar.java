@@ -12,7 +12,7 @@ public class CentroListar extends JPanel{
     CentroListar(){
     	
         setLayout(new BorderLayout(10,10));
-        setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Margens
+        setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Margens
         setBackground(Color.WHITE);
 
         String[] colunas = {"ID","Nome","Descrição","Quantidade","Preço"};
