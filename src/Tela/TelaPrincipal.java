@@ -109,9 +109,12 @@ public class TelaPrincipal extends JFrame {
         setVisible(true);
     }
 
+<<<<<<< HEAD
     public static void main(String[] args) {
         Produto.adicionarProduto(new Produto(1, "Mouse", "Mouse com fio", 59.90, 10));
         Produto.adicionarProduto(new Produto(2, "Teclado", "Teclado mecânico", 199.90, 5));
         new TelaPrincipal();
     }
+=======
+>>>>>>> c9e0b657f422c10eed5db5ef2faac40d427bc149
 }
