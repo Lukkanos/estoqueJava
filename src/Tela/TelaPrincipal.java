@@ -15,6 +15,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import estoque.Produto;
+
 public class TelaPrincipal extends JFrame {
 
     private JPanel painelCentral;
@@ -108,6 +110,8 @@ public class TelaPrincipal extends JFrame {
     }
 
     public static void main(String[] args) {
+        Produto.adicionarProduto(new Produto(1, "Mouse", "Mouse com fio", 59.90, 10));
+        Produto.adicionarProduto(new Produto(2, "Teclado", "Teclado mecânico", 199.90, 5));
         new TelaPrincipal();
     }
 }

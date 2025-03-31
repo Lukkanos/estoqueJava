@@ -1,21 +1,22 @@
 package estoque;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Produto {
     private int id;
     private String nome;
     private String descricao;
     private double preco;
     private int quantidade;
-    private String categoria;
 
 
-    public Produto(int id, String nome, String descricao, double preco, int quantidade, String categoria) {
+    public Produto(int id, String nome, String descricao, double preco, int quantidade) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
         this.quantidade = quantidade;
-        this.categoria = categoria;
     }
 
 
@@ -59,24 +60,14 @@ public class Produto {
         this.quantidade = quantidade;
     }
 
-    public String getCategoria() {
-        return categoria;
-    }
+    private static List<Produto> produtos = new ArrayList<>();
 
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
+    public static void adicionarProduto(Produto produto) {
+        produtos.add(produto);
     }
-
-    @Override
-    public String toString() {
-        return "\n" +
-               "ID: " + id + "\n" +
-               "Nome: " + nome + "\n" +
-               "Descrição: " + descricao + "\n" +
-               "Preço: R$ " + String.format("%.2f", preco) + "\n" +
-               "Quantidade: " + quantidade + "\n" +
-               "Categoria: " + categoria +"\n";
-    }
+    public static List<Produto> listarProdutos() {
+        return produtos;
+    }
 
 
 }
