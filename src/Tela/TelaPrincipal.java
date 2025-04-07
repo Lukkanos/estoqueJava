@@ -15,11 +15,12 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import estoque.Produto;
+
 
 public class TelaPrincipal extends JFrame {
 
     private JPanel painelCentral;
+    
 
     public TelaPrincipal() {
         setTitle("Menu de Escolha");
@@ -58,7 +59,7 @@ public class TelaPrincipal extends JFrame {
         listar.setBackground(new Color(33, 150, 243));
         listar.setMaximumSize(new Dimension(160, 40));
 
-        JButton editar = new JButton("Editar");
+        JButton editar = new JButton("Sair");
         editar.setAlignmentX(Component.CENTER_ALIGNMENT);
         editar.setFont(new Font("Arial", Font.BOLD, 16));
         editar.setForeground(Color.WHITE);
@@ -88,9 +89,7 @@ public class TelaPrincipal extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 painelCentral.removeAll();
-                painelCentral.add(new JLabel("Tela de Editar", JLabel.CENTER), BorderLayout.CENTER);
-                painelCentral.revalidate();
-                painelCentral.repaint();
+    
             }
         });
         
@@ -109,12 +108,9 @@ public class TelaPrincipal extends JFrame {
         setVisible(true);
     }
 
-<<<<<<< HEAD
+
     public static void main(String[] args) {
-        Produto.adicionarProduto(new Produto(1, "Mouse", "Mouse com fio", 59.90, 10));
-        Produto.adicionarProduto(new Produto(2, "Teclado", "Teclado mecânico", 199.90, 5));
         new TelaPrincipal();
     }
-=======
->>>>>>> c9e0b657f422c10eed5db5ef2faac40d427bc149
+
 }

@@ -10,31 +10,36 @@ import javax.swing.*;
 
 public class CentroCadastro extends JPanel {
 
-    private JTextField txtId;
+    
     private JTextField txtNome;
     private JTextField txtDescricao;
     private JTextField txtPreco;
     private JTextField txtQuantidade;
     private JButton btnSalvar;
     private JButton btnCancelar;
+
+    private static int idAtual = 1;
+
+    public static int gerarId() {
+        return idAtual++;
+    }
     CentroCadastro() {
+        
         setLayout(new BorderLayout(10, 10));
-        setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Margens
-        setBackground(Color.WHITE);
+        setBorder(BorderFactory.createEmptyBorder(100, 20, 150, 20)); // Margens
+        
 
         JPanel painelCampos = new JPanel();
         painelCampos.setLayout(new GridLayout(5, 2, 10, 10));
-        painelCampos.setBackground(Color.WHITE);
+        
 
-        txtId = new JTextField();
         txtNome = new JTextField();
         txtDescricao = new JTextField();
         txtPreco = new JTextField();
         txtQuantidade = new JTextField();
-    
 
-        painelCampos.add(new JLabel("ID:"));
-        painelCampos.add(txtId);
+        
+
         painelCampos.add(new JLabel("Nome:"));
         painelCampos.add(txtNome);
         painelCampos.add(new JLabel("Descrição:"));
@@ -45,11 +50,17 @@ public class CentroCadastro extends JPanel {
         painelCampos.add(txtQuantidade);
 
         JPanel painelBotoes = new JPanel();
-        painelBotoes.setBackground(Color.WHITE);
+        
+        
         btnSalvar = new JButton("Salvar");
+        btnSalvar.setBackground(new Color(76, 175, 80));
+        btnSalvar.setForeground(Color.WHITE);
         btnCancelar = new JButton("Cancelar");
+        btnCancelar.setBackground(Color.RED);
+        btnCancelar.setForeground(Color.WHITE);
         painelBotoes.add(btnSalvar);
         painelBotoes.add(btnCancelar);
+       
        
         add(painelCampos, BorderLayout.CENTER);
         add(painelBotoes, BorderLayout.SOUTH);
@@ -57,16 +68,19 @@ public class CentroCadastro extends JPanel {
         btnSalvar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-
-                    Produto produto = new Produto(
-                        Integer.parseInt(txtId.getText()),
-                        txtNome.getText(),
-                        txtDescricao.getText(),
-                        Double.parseDouble(txtPreco.getText()),
-                        Integer.parseInt(txtQuantidade.getText())
-                    );
+               try {
+                        int id = gerarId();
+                        
+                        Produto produto = new Produto(
+                            id,  
+                            txtNome.getText(),
+                            txtDescricao.getText(),
+                            Double.parseDouble(txtPreco.getText()),
+                            Integer.parseInt(txtQuantidade.getText())
+                        );
                     Produto.adicionarProduto(produto);
+                    Client client = new Client();
+                    client.sendProduto("adicionar", produto);
                     
                     JOptionPane.showMessageDialog(CentroCadastro.this, 
                         "Produto cadastrado com sucesso:\n" + produto.toString());
@@ -86,7 +100,6 @@ public class CentroCadastro extends JPanel {
     }
     //Criei um metodo para limpar os campos
     private void limparCampos() {
-        txtId.setText("");
         txtNome.setText("");
         txtDescricao.setText("");
         txtPreco.setText("");

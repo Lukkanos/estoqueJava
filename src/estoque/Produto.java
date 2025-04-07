@@ -1,15 +1,16 @@
 package estoque;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Produto {
+public class Produto implements Serializable{
     private int id;
     private String nome;
     private String descricao;
     private double preco;
     private int quantidade;
-
+    
 
     public Produto(int id, String nome, String descricao, double preco, int quantidade) {
         this.id = id;
@@ -68,6 +69,15 @@ public class Produto {
     public static List<Produto> listarProdutos() {
         return produtos;
     }
-
+    @Override
+    public String toString() {
+        return "Produto{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", preco=" + preco +
+                ", quantidade=" + quantidade +
+                '}';
+    }
 
 }
