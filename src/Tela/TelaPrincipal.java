@@ -13,7 +13,9 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 
 
@@ -40,6 +42,11 @@ public class TelaPrincipal extends JFrame {
         painelCentral.setBackground(Color.WHITE);
         painelCentral.setLayout(new BorderLayout());
 
+        JLabel labelTexto = new JLabel("Bem Vindo! ;)");
+        labelTexto.setHorizontalAlignment(SwingConstants.CENTER); 
+        labelTexto.setFont(new Font("Arial", Font.PLAIN, 24)); 
+
+        painelCentral.add(labelTexto);
         JLabel titulo = new JLabel("Opções");
         titulo.setFont(new Font("Arial", Font.BOLD, 16));
         titulo.setForeground(Color.BLACK);
@@ -59,12 +66,12 @@ public class TelaPrincipal extends JFrame {
         listar.setBackground(new Color(33, 150, 243));
         listar.setMaximumSize(new Dimension(160, 40));
 
-        JButton editar = new JButton("Sair");
-        editar.setAlignmentX(Component.CENTER_ALIGNMENT);
-        editar.setFont(new Font("Arial", Font.BOLD, 16));
-        editar.setForeground(Color.WHITE);
-        editar.setBackground(new Color(255, 152, 0));
-        editar.setMaximumSize(new Dimension(160, 40));
+        JButton sair = new JButton("Sair");
+        sair.setAlignmentX(Component.CENTER_ALIGNMENT);
+        sair.setFont(new Font("Arial", Font.BOLD, 16));
+        sair.setForeground(Color.WHITE);
+        sair.setBackground(new Color(255, 152, 0));
+        sair.setMaximumSize(new Dimension(160, 40));
 
         painelLateral.add(titulo);
         painelLateral.add(Box.createRigidArea(new Dimension(0, 15)));
@@ -72,7 +79,7 @@ public class TelaPrincipal extends JFrame {
         painelLateral.add(Box.createRigidArea(new Dimension(0, 15)));
         painelLateral.add(listar);
         painelLateral.add(Box.createRigidArea(new Dimension(0, 15)));
-        painelLateral.add(editar);
+        painelLateral.add(sair);
 
         cadastrar.addActionListener(new ActionListener() {
             @Override
@@ -85,10 +92,14 @@ public class TelaPrincipal extends JFrame {
             }
         });
 
-        editar.addActionListener(new ActionListener() {
+        sair.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                painelCentral.removeAll();
+                int opcao = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja sair?", "Confirmação", JOptionPane.YES_NO_OPTION);
+                    if (opcao == JOptionPane.YES_OPTION){
+                        System.exit(0);
+                    }
+               
     
             }
         });

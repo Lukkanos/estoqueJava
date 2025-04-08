@@ -53,6 +53,12 @@ public class CentroEditar {
                     double novoPreco = Double.parseDouble(campoPreco.getText());
                     int novaQuantidade = Integer.parseInt(campoQuantidade.getText());
 
+                    if (novoPreco < 0 || novaQuantidade < 0) {
+                        JOptionPane.showMessageDialog(null, "Preço e quantidade não podem ser negativos!");
+                        return; // Interrompe o processo de cadastro
+                    }
+                    
+
                     Produto produtoSelecionado = produtos.get(linhaSelecionada);
                     produtoSelecionado.setNome(novoNome);
                     produtoSelecionado.setDescricao(novaDescricao);
@@ -60,8 +66,8 @@ public class CentroEditar {
                     produtoSelecionado.setQuantidade(novaQuantidade);
 
                     tm.fireTableRowsUpdated(linhaSelecionada, linhaSelecionada);
-                    Client client =new Client();
-                    client.sendProduto("editar", produtoSelecionado);
+                   // Client client =new Client();
+                   // client.sendProduto("editar", produtoSelecionado);
 
                     janela.dispose(); 
                 } catch (NumberFormatException ex) {

@@ -70,6 +70,13 @@ public class CentroCadastro extends JPanel {
             public void actionPerformed(ActionEvent e) {
                try {
                         int id = gerarId();
+                        double preco = Double.parseDouble(txtPreco.getText());
+                        int quantidade = Integer.parseInt(txtQuantidade.getText());
+
+                        if (preco < 0 || quantidade < 0) {
+                            JOptionPane.showMessageDialog(null, "Preço e quantidade não podem ser negativos!");
+                            return; // Interrompe o processo de cadastro
+                        }
                         
                         Produto produto = new Produto(
                             id,  
@@ -79,8 +86,8 @@ public class CentroCadastro extends JPanel {
                             Integer.parseInt(txtQuantidade.getText())
                         );
                     Produto.adicionarProduto(produto);
-                    Client client = new Client();
-                    client.sendProduto("adicionar", produto);
+                    //Client client = new Client();
+                    //client.sendProduto("adicionar", produto);
                     
                     JOptionPane.showMessageDialog(CentroCadastro.this, 
                         "Produto cadastrado com sucesso:\n" + produto.toString());
@@ -88,7 +95,7 @@ public class CentroCadastro extends JPanel {
                         limparCampos();
                 } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(CentroCadastro.this, 
-                        "Erro: Insira valores numéricos válidos para ID, Preço e Quantidade");
+                        "Erro: Insira valores numéricos válidos para Preço e Quantidade");
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(CentroCadastro.this, 
                         "Erro ao cadastrar produto: " + ex.getMessage());

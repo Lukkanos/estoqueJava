@@ -11,7 +11,7 @@ public class Client {
 
     public Client() {
         try {
-            socket = new Socket("192.168.22.58", 12345);
+            socket = new Socket("192.168.22.22", 12345);
             System.out.println("Conectado ao servidor...");
             // Iniciar a thread ProdutoReceiver
             Thread thread = new Thread(new ProdutoReceiver(socket));
